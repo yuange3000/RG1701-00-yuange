@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+
+    <!-- 属性 -->
+    <field name="name">
+        <!-- 属性校验器  requiredstring 必填的字符串，不能为空 -->
+        <field-validator type="requiredstring">
+            <!-- 去掉前后的空格 -->
+            <param name="trim">true</param>
+            <!-- 如果校验失败，就提示错误信息 -->
+            <message>用户名不能为空</message>
+        </field-validator>
+    </field>
+    <field name="password">
+        <!-- 属性校验器  requiredstring 必填的字符串，不能为空 -->
+        <field-validator type="requiredstring">
+            <!-- 去掉前后的空格 -->
+            <param name="trim">true</param>
+            <!-- 如果校验失败，就提示错误信息 -->
+            <message>密码不能为空</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <!-- 为校验器指定参数实现不同的校验规则，minlength：最少长度 -->
+            <param name="minLength">6</param>
+            <message>密码长度不能少于6位</message>
+        </field-validator>
+    </field>
+</validators>

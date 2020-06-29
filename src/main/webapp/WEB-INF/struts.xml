@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.multipart.maxSize" value="20971520"/>
+    <constant name="struts.multipart.saveDir" value="/Users/PSYGEIM/Desktop"/>
+    <package name="upload" namespace="/" extends="struts-default">
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+        <action name="hello">
+            <result name="success">/struts.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name = "adminLogin" class="action.AdminAction">
+            <result name="success" type="chain">findAll</result>
+            <result name="success_1" type="chain">findlocal</result>
+            <result name="success_2" type="chain">find</result>
+            <result name="login">/A_login.jsp</result>
+        </action>
+
+        <action name = "studentLogin" class="action.SLoginAction">
+            <result name="success" >/student_show.jsp</result>
+            <result name="login">/error.jsp</result>
+        </action>
+
+        <action name = "findAll" class="action.StudentAction" method="findAll">
+            <result name="success">/student_query.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="findlocal" class="action.StudentAction" method="findlocal">
+            <result name="success">/student_query.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="find" class="action.StudentAction" method="find">
+            <result name="success">/student_query_find.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="student_achievement" class="action.StudentAction" method="findAchievement">
+            <result name="success">/student_achievement.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="student_achievement_admin" class="action.StudentAction" method="findAchievementAdmin">
+            <result name="success">/student_achievement.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="delete" class="action.StudentAction" method="delete">
+            <result name ="success" type = "chain">findAll</result>
+            <result name ="error">/error.jsp</result>
+        </action>
+        <action name="S_Update" class="action.StudentAction" method="update">
+            <result name ="success" type = "chain">findAll</result>
+            <result name ="error">/error.jsp</result>
+        </action>
+        <action name="S_Update_self" class="action.StudentAction" method="update">
+            <result name ="success">/S_login.jsp</result>
+            <result name ="error">/error.jsp</result>
+        </action>
+
+        <action name="search" class="action.StudentAction" method="search">
+            <result name ="success">/search.jsp</result>
+            <result name ="error">/error.jsp</result>
+        </action>
+        <action name="add" class="action.AddAction">
+            <result name ="success" type = "chain">findAll</result>
+            <result name ="error">/error.jsp</result>
+            <result name="input">/S_add.jsp</result>
+        </action>
+    </package>
+</struts>
